@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PaperChat — Research Q&A</title>
+  <link rel="stylesheet" href="/static/css/style.css" />
+</head>
+<body>
+  <div class="app">
+
+    <!-- ── Sidebar ── -->
+    <aside class="sidebar">
+      <div class="sb-head">
+        <div class="logo">
+          <div class="logo-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+              <path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/>
+              <path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/>
+            </svg>
+          </div>
+          <span class="logo-text">PaperChat</span>
+        </div>
+        <div class="logo-sub">Research Q&amp;A · RAG</div>
+      </div>
+
+      <input type="file" id="file-input" accept=".pdf" />
+      <button class="upload-btn" id="upload-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="16 16 12 12 8 16"/>
+          <line x1="12" y1="12" x2="12" y2="21"/>
+          <path d="M20.39 18.39A5 5 0 0018 9h-1.26A8 8 0 103 16.3"/>
+        </svg>
+        Upload PDF (max 3)
+      </button>
+
+      <div class="papers-list" id="papers-list">
+        <div class="no-papers">No papers yet.<br/>Upload up to 3 PDFs.</div>
+      </div>
+
+      <div class="sb-footer">Semantic search · Citations · Multi-turn</div>
+    </aside>
+
+    <!-- ── Chat area ── -->
+    <main class="chat-area">
+      <div class="chat-header">
+        <div>
+          <h1 class="chat-title">Research Assistant</h1>
+          <p class="chat-sub" id="chat-sub">Upload papers to begin</p>
+        </div>
+        <div class="badge" id="badge">0 papers</div>
+      </div>
+
+      <div class="progress-bar" id="progress-bar"></div>
+
+      <div class="messages" id="messages">
+        <div class="empty-state" id="empty-state">
+          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.2">
+            <rect x="8" y="6" width="30" height="40" rx="3"/>
+            <rect x="18" y="16" width="38" height="42" rx="3"/>
+            <line x1="26" y1="28" x2="48" y2="28"/>
+            <line x1="26" y1="35" x2="48" y2="35"/>
+            <line x1="26" y1="42" x2="40" y2="42"/>
+          </svg>
+          <h2>Ask about your papers</h2>
+          <p>Upload research PDFs and get cited answers across all of them.</p>
+          <div class="chips" id="chips">
+            <button class="chip" onclick="useChip(this)">What is the main contribution?</button>
+            <button class="chip" onclick="useChip(this)">Summarize the methodology</button>
+            <button class="chip" onclick="useChip(this)">What datasets were used?</button>
+            <button class="chip" onclick="useChip(this)">Compare results across papers</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="input-row">
+        <textarea
+          id="input"
+          placeholder="Ask a question about your papers…"
+          rows="1"
+          aria-label="Question input"
+        ></textarea>
+        <button class="send-btn" id="send-btn" disabled aria-label="Send">
+          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+            <line x1="22" y1="2" x2="11" y2="13"/>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+          </svg>
+        </button>
+      </div>
+      <p class="input-hint" id="hint">Upload at least one PDF to start chatting</p>
+    </main>
+  </div>
+
+  <script src="/static/js/app.js"></script>
+</body>
+</html>
