@@ -72,7 +72,14 @@ def retrieve(query: str, papers: list) -> list[dict]:
     all_chunks = [c for p in papers for c in p["chunks"]]
     scored = [(cosine_sim(q_vec, simple_embed(c["text"])), c) for c in all_chunks]
     scored.sort(key=lambda x: x[0], reverse=True)
-    return [c for _, c in scored[:TOP_K]]
+    selected = [c for _, c in scored[:TOP_K]]
+    
+    # Always include the very first chunk of every paper (Title, Authors, Abstract)
+    for p in papers[::-1]:
+        if p["chunks"] and p["chunks"][0] not in selected:
+            selected.insert(0, p["chunks"][0])
+            
+    return selected
 
 
 # ── routes ───────────────────────────────────────────────────────────────────
@@ -173,6 +180,15 @@ def chat():
     if not query:
         return jsonify({"error": "Query cannot be empty"}), 400
 
+    # ── Casual message detection ──────────────────────────────────────────────
+    CASUAL_TRIGGERS = {"hi", "hello", "hey", "thanks", "thank you", "bye", "ok", "okay", "cool", "great"}
+
+    if query.lower().strip("!.,?") in CASUAL_TRIGGERS:
+        return jsonify({
+            "reply": "Hi! I'm your research assistant. Ask me anything about your uploaded papers!",
+            "sources": []
+        })
+
     # Retrieval
     chunks = retrieve(query, papers)
     sources = list(dict.fromkeys(c["source"] for c in chunks))  # unique, ordered
@@ -203,7 +219,7 @@ def chat():
 
     try:
         response = client.chat.completions.create(
-            model="llama3-8b-8192",
+            model="llama-3.3-70b-versatile",
             max_tokens=1024,
             messages=messages,
         )
