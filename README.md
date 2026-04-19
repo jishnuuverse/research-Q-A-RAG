@@ -5,7 +5,7 @@ Answers are generated using Groq LLM and include citations showing which paper t
 
 Tech Stack
 
-Backend: Python, Flask
+Backend: Python, Flask 
 LLM: Groq API (llama-3.3-70b-versatile)
 PDF Parsing: PyPDF2
 Retrieval: TF cosine similarity (in-memory)
