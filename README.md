@@ -34,7 +34,8 @@ Answers are generated using **Groq LLM** and include **citations** showing which
 
 
 
-_Add your screenshots here (recommended):_
+<img width="1103" height="877" alt="image" src="https://github.com/user-attachments/assets/4edcd017-41bc-446b-af98-5e24147b3cff" />
+
 
 
 
