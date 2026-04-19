@@ -41,22 +41,23 @@ Answers are generated using **Groq LLM** and include **citations** showing which
 
 ---
 
-## 📁 Project Structure
+## Project Structure
+
+```
 research-Q-A-RAG/
-│
-├── app.py # Flask backend (upload, retrieval, chat)
+├── app.py
 ├── requirements.txt
-├── .env # Groq API key (DO NOT commit)
+├── .env
 ├── .gitignore
 ├── README.md
-│
 ├── templates/
-│ └── index.html # UI
-│
+│   └── index.html
 └── static/
-├── css/style.css
-└── js/app.js
-
+    ├── css/
+    │   └── style.css
+    └── js/
+        └── app.js
+```
 
 
 ---
