@@ -1,84 +1,81 @@
-PaperChat — Research Paper Q&A (RAG)
+# 📄 PaperChat — Research Paper Q&A (RAG)
 
-A local RAG chatbot that allows you to upload up to 3 research PDFs and ask questions across them.
-Answers are generated using Groq LLM and include citations showing which paper the information came from.
+![Python](https://img.shields.io/badge/Python-3.10-blue)
+![Flask](https://img.shields.io/badge/Flask-Web%20Framework-black)
+![LLM](https://img.shields.io/badge/LLM-Groq-green)
+![Status](https://img.shields.io/badge/Status-Active-success)
 
-Tech Stack
+A local **RAG chatbot** that lets you upload up to **3 research PDFs** and ask questions across them.  
+Answers are generated using **Groq LLM** and include **citations** showing which paper the information came from.
 
-Backend: Python, Flask 
-LLM: Groq API (llama-3.3-70b-versatile)
-PDF Parsing: PyPDF2
-Retrieval: TF cosine similarity (in-memory)
-Frontend: HTML, CSS, JavaScript
+---
 
-Project Structure
+## ✨ Features
 
+- 📄 Upload multiple research papers (PDF)
+- 🔍 Ask questions across documents
+- 📚 Context-aware answers with citations
+- ⚡ Fast responses using Groq LLM
+- 🎯 Clean and simple UI
+
+---
+
+## 🚀 Tech Stack
+
+- **Backend:** Python, Flask  
+- **LLM:** Groq API (llama-3.3-70b-versatile)  
+- **PDF Parsing:** PyPDF2  
+- **Retrieval:** TF cosine similarity (in-memory)  
+- **Frontend:** HTML, CSS, JavaScript  
+
+---
+
+## 📸 Screenshots
+
+
+
+_Add your screenshots here (recommended):_
+
+
+
+---
+
+## 📁 Project Structure
 research-Q-A-RAG/
 │
-├── app.py (Flask backend — upload, retrieval, chat routes)
+├── app.py # Flask backend (upload, retrieval, chat)
 ├── requirements.txt
-├── .env (Your Groq API key — do NOT commit)
+├── .env # Groq API key (DO NOT commit)
 ├── .gitignore
 ├── README.md
 │
 ├── templates/
-│ └── index.html (UI)
+│ └── index.html # UI
 │
 └── static/
 ├── css/style.css
 └── js/app.js
 
-Setup
-Clone the repository
 
+
+
+---
+
+## ⚙️ Setup
+
+### 1. Clone the repository
+
+```bash
 git clone https://github.com/jishnuuverse/research-Q-A-RAG.git
-
 cd research-Q-A-RAG
 
-Create virtual environment
-
+### 2. Create virtual environment
 python -m venv venv
 
 Activate:
-Windows: venv\Scripts\activate
-Mac/Linux: source venv/bin/activate
 
-Install dependencies
+# Windows
+venv\Scripts\activate
 
-pip install -r requirements.txt
-
-Add Groq API Key
-
-Create a .env file:
-
-GROQ_API_KEY=your-groq-api-key
-
-Get key: https://console.groq.com
-
-Run the app
-
-python app.py
-
-Open: http://localhost:5000
-
-How It Works
-
-Upload: Extracts text from PDFs and splits into chunks (~150 words).
-
-Retrieve: Uses TF cosine similarity to find the most relevant chunks.
-
-Generate: Sends top chunks + history to Groq LLM to generate answers with citations.
-
-Environment Variables
-
-GROQ_API_KEY (required) — Your Groq API key
-
-Limitations
-Data is stored in memory (resets on restart)
-TF retrieval may miss semantic meaning
-Scanned PDFs are not supported (use OCR tools like ocrmypdf)
-Future Improvements
-Add embeddings (FAISS / ChromaDB)
-Persistent database (SQLite / PostgreSQL)
-Multi-user support
-OCR support for scanned PDFs
+# Mac/Linux
+source venv/bin/activate
